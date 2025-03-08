@@ -5,7 +5,10 @@
 
 ## Introduction
 
-- ...
+- In this activity we will be installing Node.js and creating the following programs:
+     - Command Line Hello World application
+     - Browser Hello World application using Express
+     - Browser application using Typescript
 
 ## Screenshots
 
@@ -43,4 +46,4 @@ Screenshot 7: Commented typescript code
 
 ## Conclusion
 
-...
+In this activity, we installed Node.js and created several Hello World applications using various technologies such as Express and TypeScript. We learned about nodemon, which automatically updates whenever a new change is made on the server. This allows you to simply refresh the page to see the new content, rather than having to manually restart the program in order to put updated code into action. We also learned about routing and how to define various endpoints that you can access via HTTP requests.
