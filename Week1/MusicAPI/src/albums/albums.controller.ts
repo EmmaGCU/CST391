@@ -45,7 +45,8 @@ export const readAlbumsByArtist: RequestHandler = async (req: Request, res: Resp
 
 export const readAlbumsByArtistSearch: RequestHandler = async (req: Request, res: Response) => {
     try {
-        const albums = await AlbumDao.readAlbumsByArtistSearch('%' + req.params.artist + '%');
+        console.log("Yippee!");
+        const albums = await AlbumDao.readAlbumsByArtistSearch('%' + req.params.search + '%');
 
         await readTracks(albums, res)
         res.status(200).json(
@@ -61,7 +62,7 @@ export const readAlbumsByArtistSearch: RequestHandler = async (req: Request, res
 
 export const readAlbumsByDescriptionSearch: RequestHandler = async (req: Request, res: Response) => {
     try {
-        const albums = await AlbumDao.readAlbumsByDescriptionSearch('%' + req.params.artist + '%');
+        const albums = await AlbumDao.readAlbumsByDescriptionSearch('%' + req.params.search + '%');
 
         await readTracks(albums, res)
         res.status(200).json(
@@ -77,9 +78,9 @@ export const readAlbumsByDescriptionSearch: RequestHandler = async (req: Request
 
 export const createAlbum: RequestHandler = async (req: Request, res: Response) => {
     try {
+        console.log('req.body', req.body);
         const okPacket: OkPacket = await AlbumDao.createAlbum(req.body);
 
-        console.log('req.body', req.body);
         console.log('album', okPacket);
 
         req.body.tracks.forEach(async (track: Track, index: number) => {
@@ -104,9 +105,9 @@ export const createAlbum: RequestHandler = async (req: Request, res: Response) =
 
 export const updateAlbum: RequestHandler = async (req: Request, res: Response) => {
     try {
+        console.log('req.body', req.body);
         const okPacket: OkPacket = await AlbumDao.updateAlbum(req.body);
 
-        console.log('req.body', req.body);
         console.log('album', okPacket);
 
         req.body.tracks.forEach(async (track: Track, index: number) => {

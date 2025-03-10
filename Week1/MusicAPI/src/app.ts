@@ -5,11 +5,15 @@ import logger from './middleware/logger.middleware';
 import dotenv from "dotenv";
 import cors from 'cors';
 import helmet from 'helmet';
+import bodyParser, { urlencoded } from 'body-parser';
 
 dotenv.config();
 
 const app = express(); //initialize the application
 const port = 3000; //define the port number
+
+app.use(bodyParser.urlencoded());
+app.use(bodyParser.json());
 
 // Make sure you understand the following line of code.
 app.use('/', [albumsRouter, artistsRouter]);
