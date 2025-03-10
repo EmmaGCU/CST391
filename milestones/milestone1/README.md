@@ -27,7 +27,7 @@ For this project I will be creating a “Quote Collector” application. This wi
 ![SiteMap](SiteMap.jpg)
 
 #### Wireframes:
-![Wireframes](WireFrames.jpg)
+![Wireframes](Wireframes.jpg)
 
 #### UML Diagrams:
 ![UMLDiagrams](UMLDiagrams.jpg)
