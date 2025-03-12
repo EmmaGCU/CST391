@@ -21,16 +21,23 @@ For this project I will be creating a “Quote Collector” application. This wi
 
 
 #### ER Diagram:
-![ERDiagram](ERDiagram.jpg)
+![ERDiagramUpdated](ERDiagramUpdated.png)
 
 #### Sitemap:
-![SiteMap](SiteMap.jpg)
+![SiteMapUpdated](SitemapUpdated.png)
 
 #### Wireframes:
-![Wireframes](Wireframes.jpg)
+![IndividualQuote](IndividualQuote.png)
+![Search](Search.png)
+![AddNewQuote](AddNewQuote.png)
+![SignUp](SignUp.png)
+![Login](Login.png)
 
 #### UML Diagrams:
-![UMLDiagrams](UMLDiagrams.jpg)
+![UsersUML](UsersUML.png)
+![QuotesUML](QuotesUML.png)
+![AuthorsUML](AuthorsUML.png)
+![TagsUML](TagsUML.png)
 
 #### Risks: 
 -	Undiscovered design flaws
