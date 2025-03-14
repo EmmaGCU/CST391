@@ -22,6 +22,7 @@ For this project I will be creating a “Quote Collector” application. This wi
 
 #### ER Diagram:
 ![ERDiagramUpdated](ERDiagramUpdated.png)
+This is the initial proposed ER diagram for the application. It includes User (the application user), Authors (the source of the quote), Quotes (the text, comments and associated data of the quote itself), Tags (a collection of categories that can be associated with a quote), and a Quote_Tag join table, associating each quote with any applica
 
 #### Sitemap:
 ![SiteMapUpdated](SitemapUpdated.png)
