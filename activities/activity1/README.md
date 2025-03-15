@@ -64,10 +64,6 @@ GREETING=Hello from the environment file. Be kind to the environment!
 |DELETE|http://localhost:5000/albums/:albumId|||albumId=34|
 |GET|http://localhost:5000/artists|[Browser](artists.png)|[Postman](artistsPostman.png)||
 
-- This is the System Output displaying the SQL variables, database connection and the GET method being called
-
-![System Output](sysout.png)
-
 ## Conclusion
 
 - Explain what you learned on this assignment throughly ...
