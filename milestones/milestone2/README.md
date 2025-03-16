@@ -39,7 +39,7 @@ Updated ER diagram proposed for the application. Updates include:
 - Updating all ID fields to specify the entity which they are representing (User_id, Author_id, etc.)
 
 ## Sitemap:
-![SiteMapUpdated](Sitemap.png)
+![SiteMapUpdated](SiteMap.png)
 <br />
 
 Updated sitemap, redrawn to look more professional
