@@ -42,18 +42,23 @@ ng serve
 ## Screenshots
 
 ![Angular Version](./AngularVersion.png)
+<br />
 Screenshot 1: Results of running "ng version", which displays the curent version of Angular running on your machine.
 
 ![testapp Application](./testappMainPage.png)
+<br />
 Screenshot 2: The default page for the newly created "testapp" application.
 
 ![Page Reload CLI](./PageReloadA.png)
+<br />
 Screenshot 3: CLI confirmation that the new changes triggered an automatic page reload.
 
 ![Page Reload Browser](./PageReloadB.png)
+<br />
 Screenshot 4: The new updates are now displaying in the browser (added "XXX" to the application title).
 
 ![New Variable](./NewVariable.png)
+<br />
 Screenshot 5: A new h3 element is displayed below the title using a newly added variable "name".
 
 ## Research
