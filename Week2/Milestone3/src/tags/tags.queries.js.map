@@ -1,0 +1,1 @@
+{"version":3,"file":"tags.queries.js","sourceRoot":"","sources":["tags.queries.ts"],"names":[],"mappings":";AAAA,oHAAoH;;;AAEvG,QAAA,UAAU,GAAG;IACtB,UAAU,EAAE,mCAAmC;IAC/C,SAAS,EAAE,wCAAwC;IACnD,gBAAgB,EAAE,yDAAyD;IAC3E,UAAU,EAAE,mCAAmC;IAC/C,UAAU,EAAE,uCAAuC;IACnD,kBAAkB,EAAE,iHAAiH;IACrI,oBAAoB,EAAE,yDAAyD;IAC/E,iBAAiB,EAAE,uDAAuD;IAC1E,eAAe,EAAE,uDAAuD;CAC3E,CAAA"}
