@@ -105,6 +105,11 @@ Screenshot 4: A list of all artists, including the artist of the new album creat
 <br />
 Screenshot 5: Alert box showing the value of property "version" 
 
-## Conclusion
+## Research
+
+Link to 
+[Commented Service Code](https://github.com/EmmaGCU/CST391/blob/main/Week3/musicapp/musicapp/src/app/service/music-service.service.ts)
+
+# Conclusion
 
 - In this activity we created a simple application and explored how to create new components. We also explored databinding through ```[value]``` and ```[(ngModel)]```, as well as learning about the ```@Input``` decorator which is used to pass data from a parent class to a child class. In Part 2, we created another application, and used routerLink to route to various parts of the application. We implemented various modules including create and list.
