@@ -58,11 +58,11 @@ Screenshot 1a: Table display on a large screen
 
 ![Screenshot 2a](./OriginalDisplay.png)
 <br />
-Screenshot 2a: The initial state of the application prior to enter a name
+Screenshot 2a: The initial state of the application prior to entering a name
 
 ![Screenshot 2b](./AfterName.png)
 <br />
-Screenshot 2b: Additional page content displaying after enter a name
+Screenshot 2b: Additional page content displaying after entering a name
 
 ![Screenshot 3a](./Buy.png)
 <br />
