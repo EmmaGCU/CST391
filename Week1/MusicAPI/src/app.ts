@@ -12,6 +12,7 @@ dotenv.config();
 const app = express(); //initialize the application
 const port = 3000; //define the port number
 
+app.use(cors());
 app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
 
@@ -21,11 +22,11 @@ app.use('/', [albumsRouter, artistsRouter]);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(cors());
+
 app.use(helmet());
 
 app.listen(port, () => {
-    console.log('Example app listening at http://localhost:${port}') //Write a message to the console
+    console.log('Example app listening at http://localhost: '+port) //Write a message to the console
 })
 
 if (process.env.NODE_ENV == 'development') {

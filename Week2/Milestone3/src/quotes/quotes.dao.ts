@@ -3,8 +3,8 @@ import { execute } from '../services/mysql.connector';
 import { Quote } from './quotes.model';
 import { quoteQueries } from './quotes.queries';
 
-export const readQuotes = async() => {
-    return execute<Quote[]>(quoteQueries.readQuotes, []);
+export const readQuotes = async(userId: number) => {
+    return execute<Quote[]>(quoteQueries.readQuotes, [userId]);
 };
 
 export const readQuotesByQuoteId = async (quoteId: number) => {
@@ -12,9 +12,15 @@ export const readQuotesByQuoteId = async (quoteId: number) => {
 };
 
 export const createQuote = async (quote: Quote, authorId: number) => {
+    let qStr: string = quote.dateAdded.toString();
+    if (qStr.charAt(10) == 'T') {
+        qStr = qStr.substring(0, 10) + " " + qStr.substring(11, 19);
+        console.log("qStr: " + qStr);
+    }
+    console.log("testing" + qStr);
     console.log (quoteQueries.createQuote);
-    console.log (quote.userId +' '+ authorId +' '+ quote.text +' '+ quote.comments + ' '+quote.dateAdded);
-    return execute<OkPacket>(quoteQueries.createQuote, [quote.userId, authorId, quote.text, quote.comments, quote.dateAdded]);
+    console.log (quote.userId +' '+ authorId +' '+ quote.text +' '+ quote.comments + ' '+ qStr);
+    return execute<OkPacket>(quoteQueries.createQuote, [quote.userId, authorId, quote.text, quote.comments, qStr]);
 };
 
 export const updateQuote = async (quote: Quote, authorId: number) => {

@@ -1,0 +1,26 @@
+<div align="center" style="margin-left:50px;margin-right:50px" *ngIf="!wasSubmitted">
+    <form (ngSubmit)="onSubmit()" createForm="ngForm">
+        <div class="form-group">
+            <label for="firstName">First Name:</label>
+            <input id="firstName" type="text" class="form-control" aria-describedby="helpFirstName" placeholder="Enter your first name" 
+            required [(ngModel)]="user.firstName" name="firstName">
+        </div>
+        <div class="form-group">
+            <label for="lastName">Last Name:</label>
+            <input id="lastName" type="text" class="form-control" aria-describedby="helpLastName" placeholder="Enter your last name" required [(ngModel)]="user.lastName" name="lastName">
+        </div>
+        <div class="form-group">
+            <label for="username">Username:</label>
+            <input id="username" type="text" class="form-control" aria-describedby="helpUsername" placeholder="Enter a username" 
+            required [(ngModel)]="user.username" name="username">
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input id="password" type="text" class="form-control" aria-describedby="helpPassword" placeholder="Enter a password" required [(ngModel)]="user.password" name="password">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+<div  *ngIf="wasSubmitted">
+    User was added successfully.
+</div>   

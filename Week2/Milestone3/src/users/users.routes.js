@@ -39,5 +39,8 @@ const router = (0, express_1.Router)();
 router
     .route('/users')
     .get(UsersController.readUsers);
+router
+    .route('/users')
+    .post(UsersController.createUser);
 exports.default = router;
 //# sourceMappingURL=users.routes.js.map

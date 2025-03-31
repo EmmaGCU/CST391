@@ -8,7 +8,7 @@ export const readUsers = async () => {
 };
 
 export const readUsersByUserId = async (userId: number) => {
-    return execute<User[]>(userQueries.qReadUsers, [userId]);
+    return execute<User[]>(userQueries.qReadUsersByUserId, [userId]);
 };
 
 export const createUser = async (user: User) => {
@@ -22,3 +22,9 @@ export const updateUser = async (user: User) => {
 export const deleteUser = async (userId: number) => {
     return execute<OkPacket>(userQueries.qUpdateUser, [userId]);
 }
+
+export const readUsersByUsername = async (username: string) => {
+    console.log (userQueries.qReadUsersByUsername);
+    console.log (username);
+    return execute<User[]>(userQueries.qReadUsersByUsername, [username]);
+};

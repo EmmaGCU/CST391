@@ -11,12 +11,13 @@ const authors_routes_1 = __importDefault(require("./authors/authors.routes"));
 const users_routes_1 = __importDefault(require("./users/users.routes"));
 //import logger from './middleware/logger.middleware';
 const dotenv_1 = __importDefault(require("dotenv"));
-// import cors from 'cors';
+const cors_1 = __importDefault(require("cors"));
 // import helmet from 'helmet';
 const body_parser_1 = __importDefault(require("body-parser"));
 dotenv_1.default.config();
 const app = (0, express_1.default)(); //initialize the application
 const port = 3000; //define the port number
+app.use((0, cors_1.default)());
 app.get('/', (req, res) => {
     res.send('HelloWorld from TypeScript!');
 });

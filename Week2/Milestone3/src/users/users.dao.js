@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteUser = exports.updateUser = exports.createUser = exports.readUsersByUserId = exports.readUsers = void 0;
+exports.readUsersByUsername = exports.deleteUser = exports.updateUser = exports.createUser = exports.readUsersByUserId = exports.readUsers = void 0;
 const mysql_connector_1 = require("../services/mysql.connector");
 const users_queries_1 = require("./users.queries");
 const readUsers = () => __awaiter(void 0, void 0, void 0, function* () {
@@ -17,7 +17,7 @@ const readUsers = () => __awaiter(void 0, void 0, void 0, function* () {
 });
 exports.readUsers = readUsers;
 const readUsersByUserId = (userId) => __awaiter(void 0, void 0, void 0, function* () {
-    return (0, mysql_connector_1.execute)(users_queries_1.userQueries.qReadUsers, [userId]);
+    return (0, mysql_connector_1.execute)(users_queries_1.userQueries.qReadUsersByUserId, [userId]);
 });
 exports.readUsersByUserId = readUsersByUserId;
 const createUser = (user) => __awaiter(void 0, void 0, void 0, function* () {
@@ -32,4 +32,10 @@ const deleteUser = (userId) => __awaiter(void 0, void 0, void 0, function* () {
     return (0, mysql_connector_1.execute)(users_queries_1.userQueries.qUpdateUser, [userId]);
 });
 exports.deleteUser = deleteUser;
+const readUsersByUsername = (username) => __awaiter(void 0, void 0, void 0, function* () {
+    console.log(users_queries_1.userQueries.qReadUsersByUsername);
+    console.log(username);
+    return (0, mysql_connector_1.execute)(users_queries_1.userQueries.qReadUsersByUsername, [username]);
+});
+exports.readUsersByUsername = readUsersByUsername;
 //# sourceMappingURL=users.dao.js.map

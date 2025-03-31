@@ -1,0 +1,9 @@
+<div class="list-group" *ngIf="selectedQuote == null">
+    <button class="list-group-item" active *ngFor="let quote of quotes" (click)="onSelectQuote(quote)">
+        {{quote.text}}
+    </button>
+</div>
+
+<div *ngIf="selectedQuote">
+    <app-display-quote [quote]="selectedQuote"></app-display-quote>
+</div>

@@ -7,12 +7,17 @@ export const readUsers: RequestHandler = async (req: Request, res: Response) => 
     try {
         let users;
         let userId = parseInt(req.query.userId as string); 
+        let username = req.query.username as string;
         
         console.log('userId', userId);
-        if (Number.isNaN(userId)) {
-            users = await UsersDao.readUsers();
-        } else {
+        if (!Number.isNaN(userId)) {
             users = await UsersDao.readUsersByUserId(userId);
+        } else if (username != null) {
+            users = await UsersDao.readUsersByUsername(username);
+            console.log("Search by Username");
+        }
+        else {
+            users = await UsersDao.readUsers();
         }
 
         res.status(200).json(users);
@@ -24,7 +29,7 @@ export const readUsers: RequestHandler = async (req: Request, res: Response) => 
     }
 };
 
-export const createTags: RequestHandler = async (req: Request, res: Response) => {
+export const createUser: RequestHandler = async (req: Request, res: Response) => {
     try {
         console.log('req.body', req.body);
         const okPacket: OkPacket = await UsersDao.createUser(req.body);

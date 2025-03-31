@@ -6,7 +6,7 @@ import authorsRouter from './authors/authors.routes';
 import usersRouter from './users/users.routes';
 //import logger from './middleware/logger.middleware';
 import dotenv from "dotenv";
-// import cors from 'cors';
+import cors from 'cors';
 // import helmet from 'helmet';
 import bodyParser, { urlencoded } from 'body-parser';
 
@@ -14,6 +14,8 @@ dotenv.config();
 
 const app = express(); //initialize the application
 const port = 3000; //define the port number
+
+app.use(cors());
 
 app.get('/', (req: Request, res: Response) => {
     res.send('HelloWorld from TypeScript!');

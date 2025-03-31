@@ -12,8 +12,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteQuote = exports.updateQuote = exports.createQuote = exports.readQuotesByQuoteId = exports.readQuotes = void 0;
 const mysql_connector_1 = require("../services/mysql.connector");
 const quotes_queries_1 = require("./quotes.queries");
-const readQuotes = () => __awaiter(void 0, void 0, void 0, function* () {
-    return (0, mysql_connector_1.execute)(quotes_queries_1.quoteQueries.readQuotes, []);
+const readQuotes = (userId) => __awaiter(void 0, void 0, void 0, function* () {
+    return (0, mysql_connector_1.execute)(quotes_queries_1.quoteQueries.readQuotes, [userId]);
 });
 exports.readQuotes = readQuotes;
 const readQuotesByQuoteId = (quoteId) => __awaiter(void 0, void 0, void 0, function* () {
@@ -21,9 +21,15 @@ const readQuotesByQuoteId = (quoteId) => __awaiter(void 0, void 0, void 0, funct
 });
 exports.readQuotesByQuoteId = readQuotesByQuoteId;
 const createQuote = (quote, authorId) => __awaiter(void 0, void 0, void 0, function* () {
+    let qStr = quote.dateAdded.toString();
+    if (qStr.charAt(10) == 'T') {
+        qStr = qStr.substring(0, 10) + " " + qStr.substring(11, 19);
+        console.log("qStr: " + qStr);
+    }
+    console.log("testing" + qStr);
     console.log(quotes_queries_1.quoteQueries.createQuote);
-    console.log(quote.userId + ' ' + authorId + ' ' + quote.text + ' ' + quote.comments + ' ' + quote.dateAdded);
-    return (0, mysql_connector_1.execute)(quotes_queries_1.quoteQueries.createQuote, [quote.userId, authorId, quote.text, quote.comments, quote.dateAdded]);
+    console.log(quote.userId + ' ' + authorId + ' ' + quote.text + ' ' + quote.comments + ' ' + qStr);
+    return (0, mysql_connector_1.execute)(quotes_queries_1.quoteQueries.createQuote, [quote.userId, authorId, quote.text, quote.comments, qStr]);
 });
 exports.createQuote = createQuote;
 const updateQuote = (quote, authorId) => __awaiter(void 0, void 0, void 0, function* () {

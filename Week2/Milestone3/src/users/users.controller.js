@@ -42,18 +42,23 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteUsers = exports.updateUser = exports.createTags = exports.readUsers = void 0;
+exports.deleteUsers = exports.updateUser = exports.createUser = exports.readUsers = void 0;
 const UsersDao = __importStar(require("./users.dao"));
 const readUsers = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         let users;
         let userId = parseInt(req.query.userId);
+        let username = req.query.username;
         console.log('userId', userId);
-        if (Number.isNaN(userId)) {
-            users = yield UsersDao.readUsers();
+        if (!Number.isNaN(userId)) {
+            users = yield UsersDao.readUsersByUserId(userId);
+        }
+        else if (username != null) {
+            users = yield UsersDao.readUsersByUsername(username);
+            console.log("Search by Username");
         }
         else {
-            users = yield UsersDao.readUsersByUserId(userId);
+            users = yield UsersDao.readUsers();
         }
         res.status(200).json(users);
     }
@@ -65,7 +70,7 @@ const readUsers = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 exports.readUsers = readUsers;
-const createTags = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const createUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         console.log('req.body', req.body);
         const okPacket = yield UsersDao.createUser(req.body);
@@ -79,7 +84,7 @@ const createTags = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         });
     }
 });
-exports.createTags = createTags;
+exports.createUser = createUser;
 const updateUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         console.log('req.body', req.body);

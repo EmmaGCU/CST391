@@ -18,6 +18,7 @@ export const readAlbums: RequestHandler = async (req: Request, res: Response) =>
         }
         await readTracks(albums, res);
 
+        res.setHeader('Access-Control-Allow-Origin', '*');
         res.status(200).json(albums);
     } catch (error) {
         console.error('[albums.controller][readAlbums][Error] ', error);
