@@ -15,6 +15,8 @@ In this milestone, we implemented a front end to our proposed application using 
 - updated QuoteDAO:
   - <b>searchQuotes:</b> searches the database for quotes matching the specified criteria
   - <b>formatTime:</b> ensures that the timestamp passed in adheres to the required format prior to adding or updating a quote in the database
+- updated the SiteMap to reflect the current navigation flow
+- updated the API to include a ```POST quotes/search``` endpoint to support search functionality
 
 
 ## Screencast Link
