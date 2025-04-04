@@ -1,0 +1,46 @@
+<div align="center" style="margin-left:50px;margin-right:50px">
+    <table width="100%">
+        <colgroup>
+            <col style="width: 50%;">
+            <col style="width: 50%;">
+        </colgroup>
+        <tr>
+            <td>
+                <form (ngSubmit)="onSubmit()" createForm="ngForm">
+                    <div class="form-group">
+                        <label for="keyword"><b>Keyword: </b></label>
+                        <input id="keyword" class="form-control" aria-describedby="helpKeyword" placeholder="Enter a keyword" [(ngModel)]="search.keyword" name="keyword"/>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="author"><b>Author: </b></label>
+                        <input id="author" class="form-control" aria-describedby="helpAuthor" placeholder="Enter author name" [(ngModel)]="search.author" name="author"/>
+                    </div>
+                    <br>
+                    <b>Search for quotes: </b>
+                    <div class="form-group">
+                        <input type="checkbox" id="comments" name="comments" 
+                            value="comments" (change)="onSelectComments('comments', $event)">
+                        <label for="comments" style="margin-right: 20px">With Comments</label>
+                        <input type="checkbox" id="noComments" name="noComments" 
+                            value="noComments" (change)="onSelectComments('noComments' ,$event)">
+                        <label for="comments">No Comments</label>
+                    </div>
+                    <br>
+                    <b>Tags:</b>
+                    <div class="form-group" *ngFor="let tag of tags">
+                        <input type="checkbox" id="{{ tag.tagId }}" name="{{ tag.name }}" 
+                            value="{{ tag.tagId }}" (change)="onCheckboxChange(tag, $event)">
+                        <label for="{{ tag.tagId }}">{{tag.name}}</label>
+                    </div>
+                    <br>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </td>
+            <td style="padding-left:20px; vertical-align: top; text-align: center;">
+                <h4>Results:</h4>
+                <app-search-results [quotes]="quotes"></app-search-results>
+            </td>
+        </tr>
+    </table>
+</div>

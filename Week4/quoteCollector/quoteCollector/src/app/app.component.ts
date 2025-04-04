@@ -13,22 +13,22 @@ export class AppComponent {
 
   constructor(private router: Router) {}
 
+  search() {
+    this.router.navigate(['search'], {});
+  }
+
   displayQuoteList() {
-    alert("Display list here!");
     this.router.navigate(['list-quotes'], { });
   }
   addQuote() {
-    alert("Add quote here!");
     this.router.navigate(['create'], { });
   }
 
   signUp() {
-    alert("Sign up!");
     this.router.navigate(['signup'], { });
   }
 
   login() {
-    alert("Login!");
     this.router.navigate(['login'], { });
   }
 }

@@ -1,1 +1,48 @@
-<p>display-quote works!</p>
+<div *ngIf="!editMode">
+<div align="center">
+    <div class="card mb-6" style="max-width: 700px;">
+        <div class="row no-gutters">
+                <table>
+                    <colgroup>
+                        <col style="width: 60%">
+                        <col style="width: 40%">
+                    </colgroup>
+                    <tr>
+                        <td>
+                            <div style="text-align: center;">
+                                <div>
+                                    <b>{{ quote.text }}</b>
+                                </div>
+                                <br>
+                                <div>
+                                    {{ quote.comments }}
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                                <div class="card-body">
+                                    <div>
+                                        <b>Date Added:</b> {{ displayDate }}
+                                    </div>
+                                    <div>
+                                        <b>Author:</b> {{ quote.authorFirst }} {{ quote.authorLast }}
+                                    </div>
+                                    <b>Tags:</b>
+                                    <ul>
+                                        <li *ngFor="let tag of quote.tags">{{ tag.name }}</li>
+                                    </ul>
+                                    <br>
+                                    <button class="btn btn-primary" (click)="editQuote()" style="margin-right: 10px;">Edit</button>
+                                    <app-delete-quote [quoteId]="quote.quoteId"></app-delete-quote>
+                                    <button class="btn btn-primary" (click)="backToList()">Back to List</button>
+                                </div>
+                        </td>
+                    </tr>
+                </table>
+        </div>
+    </div>
+</div>
+</div>
+<div *ngIf="editMode">
+    <app-edit-quote [quote]="quote" (reset)="editMode = $event"></app-edit-quote>
+</div>

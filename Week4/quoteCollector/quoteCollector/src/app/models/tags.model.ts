@@ -1,4 +1,5 @@
 export interface Tag {
     tagId: number,
-    name: string
+    name: string,
+    checked: boolean
 }

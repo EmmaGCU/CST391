@@ -31,12 +31,10 @@ export class SignupComponent {
   wasSubmitted: boolean = false;
 
   constructor(private service: QuoteServiceService) { 
-    console.log("Hello from signup!");
   }
 
   ngOnInit() {
     //alert("Hello from create quote!");
-    alert("Hello from signup!");
   }
 
   public onSubmit() {
@@ -47,6 +45,7 @@ export class SignupComponent {
       console.log("User created.");
     });
     console.log("The return from createQuote() was " + status);
-    this.wasSubmitted = true;
+    alert("Signup successful!")
+    window.location.assign("login");
   }
 }

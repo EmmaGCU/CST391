@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Quote } from '../models/quotes.model'
 import { HttpClient } from '@angular/common/http';
 import { User } from '../models/users.model';
+import { Tag } from '../models/tags.model';
+import { Search } from '../models/search.model';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +15,7 @@ export class QuoteServiceService {
   private static user: number = 0;
 
   public getQuotes(callback: (quotes: Quote[]) => void): void { //get a list of all quotes
-    this.http.get<Quote[]>(this.host + "/quotes?userId=" + QuoteServiceService.user).
+    this.http.get<Quote[]>(this.host + "/quotes?userId=" + this.getUser()).
       subscribe((quotes: Quote[]) => {
         callback(quotes);
       });
@@ -69,17 +71,33 @@ export class QuoteServiceService {
     this.http.get<User[]>(this.host + "/users?username=" + user.username).
       subscribe((foundUsers: User[]) => {
         if (foundUsers.length == 0) console.log("No users returned from API call");
-        alert("user: " + JSON.stringify(foundUsers[0]));
         callback(foundUsers[0]);
       });
   }
 
   public setUser(userId: number) {
     QuoteServiceService.user = userId;
+    localStorage.setItem("user", userId.toString())
     alert("User logged in: " + QuoteServiceService.user);
   }
 
   public getUser() {
+    QuoteServiceService.user = Number(localStorage.getItem("user"));
     return QuoteServiceService.user;
+  }
+
+  public getAllTags(callback: (tags: Tag[]) => void): void {
+    this.http.get<Tag[]>(this.host + "/tags").
+    subscribe((tags: Tag[]) => {
+      callback(tags);
+    });
+  }
+
+  public searchQuotes(search: Search, callback: (quotes: Quote[]) => void): void { //get a list of all quotes
+    this.http.post<Quote[]>(this.host + "/quotes/search?userId=" + this.getUser(), search).
+      subscribe((quotes: Quote[]) => {
+        //console.log(quotes);
+        callback(quotes);
+      });
   }
 }

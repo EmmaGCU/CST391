@@ -42,7 +42,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteQuotes = exports.updateQuotes = exports.createQuotes = exports.readQuotes = void 0;
+exports.searchQuotes = exports.deleteQuotes = exports.updateQuotes = exports.createQuotes = exports.readQuotes = void 0;
 const QuoteDao = __importStar(require("./quotes.dao"));
 const TagsDao = __importStar(require("../tags/tags.dao"));
 const AuthorDao = __importStar(require("../authors/authors.dao"));
@@ -248,4 +248,23 @@ function removeQuoteTags(quoteId, tags) {
         }
     });
 }
+const searchQuotes = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        console.log("Hello from search: controller");
+        let quotes;
+        let userId = parseInt(req.query.userId);
+        let search = req.body;
+        //console.log(JSON.stringify(req.body));
+        console.log("In QuotesController: searchQuotes()... \n" + JSON.stringify(search));
+        quotes = yield QuoteDao.searchQuotes(search, userId);
+        res.status(200).json(quotes);
+    }
+    catch (error) {
+        console.error('[quotes.controller][readQuotes][Error] ', error);
+        res.status(500).json({
+            message: 'There was an error when fetching quotes'
+        });
+    }
+});
+exports.searchQuotes = searchQuotes;
 //# sourceMappingURL=quotes.controller.js.map

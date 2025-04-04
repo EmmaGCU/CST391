@@ -213,3 +213,26 @@ async function removeQuoteTags(quoteId: number, tags: Tag[]) {
         }
     }
 }
+
+export const searchQuotes: RequestHandler = async (req: Request, res: Response) => {
+    try {
+        console.log("Hello from search: controller");
+        let quotes; 
+        let userId = parseInt(req.query.userId as string);
+        let search = req.body;
+        
+        //console.log(JSON.stringify(req.body));
+        console.log("In QuotesController: searchQuotes()... \n" + JSON.stringify(search));
+
+        quotes = await QuoteDao.searchQuotes(search, userId);
+
+        res.status(200).json(
+            quotes
+        );
+    } catch (error) {
+        console.error('[quotes.controller][readQuotes][Error] ', error);
+        res.status(500).json({
+            message: 'There was an error when fetching quotes'
+        });
+    }
+};

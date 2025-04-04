@@ -18,4 +18,7 @@ router
     .route('/quotes/:quoteId')
     .delete(QuotesController.deleteQuotes);
 
+router
+    .route('/quotes/search')
+    .post(QuotesController.searchQuotes);
 export default router;

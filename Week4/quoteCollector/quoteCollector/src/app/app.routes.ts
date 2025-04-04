@@ -6,6 +6,7 @@ import { DisplayQuoteComponent } from './display-quote/display-quote.component';
 import { ListQuotesComponent } from './list-quotes/list-quotes.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
+import { SearchComponent } from './search/search.component';
 
 export const routes: Routes = [
     {path:'create', component: CreateQuoteComponent},
@@ -14,5 +15,6 @@ export const routes: Routes = [
     {path:'display/:id', component: DisplayQuoteComponent},
     {path:'list-quotes', component: ListQuotesComponent},
     {path:'login', component: LoginComponent},
-    {path:'signup', component: SignupComponent}
+    {path:'signup', component: SignupComponent},
+    {path:'search', component: SearchComponent}
 ];

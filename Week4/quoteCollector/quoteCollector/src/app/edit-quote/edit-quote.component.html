@@ -1,1 +1,40 @@
-<p>edit-quote works!</p>
+<div align="center" style="margin-left:50px;margin-right:50px" *ngIf="!wasSubmitted">
+    <form (ngSubmit)="onSubmit()" createForm="ngForm">
+        <table width="100%">
+            <colgroup>
+                <col width="50%">
+                <col width="50%">
+            </colgroup>
+            <tr width="100%">
+                <td style="padding-right: 10px">
+                    <div class="form-group">
+                        <label for="text">Text</label>
+                        <textarea id="text" rows="3" class="form-control" aria-describedby="helpText" placeholder="Enter the quote text" required [(ngModel)]="quote.text" name="text"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="comments">Comments</label>
+                        <textarea id="comments" rows="3" class="form-control" aria-describedby="helpComments" placeholder="Enter comments" [(ngModel)]="quote.comments" name="comments"></textarea>
+                    </div>
+                </td>
+                <td style="padding-left: 10px">
+                    <div class="form-group">
+                        <label for="authorFirst">Author First:</label>
+                        <input id="authorFirst" type="text" class="form-control" aria-describedby="helpAuthorFirst" placeholder="Enter the author's first name" 
+                        required [(ngModel)]="quote.authorFirst" name="authorFirst">
+                    </div>
+                    <div class="form-group">
+                        <label for="authorLast">Author Last:</label>
+                        <input id="authorLast" type="text" class="form-control" aria-describedby="helpAuthorLast" placeholder="Enter the author's last name" required [(ngModel)]="quote.authorLast" name="authorLast">
+                    </div>
+                    <div class="form-group" *ngFor="let tag of tags">
+                        <input type="checkbox" [checked]="tag.checked" id="{{ tag.tagId }}" name="{{ tag.name }}" 
+                            value="{{ tag.tagId }}" (change)="onCheckboxChange(tag, $event)">
+                        <label for="{{ tag.tagId }}">{{tag.name}}</label>
+                    </div>
+                    <br>
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>

@@ -36,7 +36,6 @@ export class LoginComponent {
 
   ngOnInit() {
     //alert("Hello from create quote!");
-    alert("Hello from login!");
   }
 
   public onSubmit() {
@@ -51,6 +50,6 @@ export class LoginComponent {
 
     });
     console.log("The return from login() was " + status);
-    this.wasSubmitted = true;
+    window.location.assign("list-quotes");
   }
 }

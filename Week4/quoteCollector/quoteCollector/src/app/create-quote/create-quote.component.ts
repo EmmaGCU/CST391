@@ -23,6 +23,8 @@ import { first } from 'rxjs';
 export class CreateQuoteComponent implements OnInit {
   @Input() user!: User;
 
+  tags!: Tag[];
+
   quote: Quote = {
       quoteId: Math.floor(Math.random() * 1000000),
       userId: 0, //this.user.userId,
@@ -39,6 +41,9 @@ export class CreateQuoteComponent implements OnInit {
 
   constructor(private service: QuoteServiceService) { 
     console.log("Hello from create quote!");
+    service.getAllTags((tags: Tag[]) => {
+      this.tags = tags;
+    });
   }
 
   ngOnInit() {
@@ -48,37 +53,29 @@ export class CreateQuoteComponent implements OnInit {
 
   public onSubmit() {
     console.log("in submit, name="+this.quote.authorFirst);
-    // Parse the Tracks and add to the Album then call the Service to create the new Album
-    /*let tracks: Track[] = [];
-    let tracksAll = this.tracksRaw.split('\n');
-    for (let i = 0; i < tracksAll.length; ++i) {
-      let title = "";
-      let lyrics = "";
-      let video = "";
-      let trackInfo = tracksAll[i];
-      let trackParts = trackInfo.split(':');
-      if (trackParts.length == 3) {
-        title = trackParts[0];
-        lyrics = trackParts[1];
-        video = trackParts[2];
-      }
-      else if (trackParts.length == 2) {
-        title = trackParts[0];
-        lyrics = trackParts[1];
-      }
-      else {
-        title = trackParts[0];
-      }
-      tracks.push(
-        { trackId: Math.floor(Math.random() * 1000000), number: i + 1, title, lyrics, video }
-      );
-    }
-    this.album.tracks = tracks;*/
     console.log(this.quote);
+    this.quote.userId=this.service.getUser();
     let status = this.service.createQuote(this.quote, () => {
       console.log("Quote created.");
     });
     console.log("The return from createQuote() was " + status);
-    this.wasSubmitted = true;
+    alert("Quote Added!");
+    window.location.assign("list-quotes");
+  }
+
+  onCheckboxChange(tag: Tag, event: Event) {
+    console.log("in onCheckboxChange");
+    const isChecked = (event.target as HTMLInputElement).checked;
+    if (isChecked) {
+      this.quote.tags.push(tag);
+    }
+    else {
+      for (let i=0; i<this.quote.tags.length; i++) {
+        if (this.quote.tags[i].name == tag.name) {
+          this.quote.tags.splice(i,1);
+          break;
+        }
+      }
+    }
   }
 }

@@ -48,5 +48,8 @@ router
 router
     .route('/quotes/:quoteId')
     .delete(QuotesController.deleteQuotes);
+router
+    .route('/quotes/search')
+    .post(QuotesController.searchQuotes);
 exports.default = router;
 //# sourceMappingURL=quotes.routes.js.map
