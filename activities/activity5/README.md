@@ -1,4 +1,4 @@
-# Activity 4
+# Activity 5
 
 - Author:  Emma Gostling
 - Date:  6 April 2025
@@ -7,7 +7,7 @@
 
 - In this activity we will learn some of the basics of programming in React, which is a popular, component based JavaScript framework. We will cover topics including JSX syntax, components, map functions, and props vs state.
 
-## Activity 4 Commands
+## Activity 5 Commands
 
 Create a new react application:
 ```
