@@ -1,0 +1,55 @@
+import React, { useState } from 'react';
+//import ReactDOM from 'react-dom';
+import {StrictMode} from 'react';
+import {createRoot} from 'react-dom/client';
+import Card from './Card';
+import './App.css';
+
+const App = () => {
+    const [albumList, setAlbumList] = useState([
+        {
+            artistId: 0,
+            artist: 'The Beatles',
+            title: "Abbey Road",
+            description: 'Abbey Road is the eleventh studio album by the English rock band the Beatles, released on 26 September 1969, by Apple Records. It is the last album the group recorded',
+            year: 1969,
+            image: "https://upload.wikimedia.org/wikipedia/en/4/42/Beatles_-_Abbey_Road.jpg"
+        },
+        {
+            artistId: 1,
+            artist: 'Linkin Park',
+            title: "One More Light",
+            description: 'One More Light is the seventh studio album by American rock band Linkin Park. It was released on May 19, 2017, through Warner Bros. Records and Machine Shop. It is their first album to have a title track, as they felt that the song "One More Light" was the heart of the album.',
+            year: 2017,
+            image: "https://upload.wikimedia.org/wikipedia/en/b/b2/Linkin_Park%2C_One_More_Light%2C_album_art_final.jpeg"
+        },
+        {
+            artistId: 2,
+            artist: 'Jónsi and Alex',
+            title: "Riceboy Sleeps",
+            description: 'Riceboy Sleeps is the debut studio album by ambient duo Jónsi & Alex, released on 20 July 2009. The album is a collaboration between Sigur Rós vocalist Jón Þór Birgisson and partner Alex Somers which features acoustic instrumental music alongside a string quartet, Amiina, and the Kópavogsdætur Choir.',
+            year: 2009,
+            image: "https://upload.wikimedia.org/wikipedia/en/0/0e/Riceboy.jpg"
+        }
+    ]);
+
+    const renderedList = () => {
+        return albumList.map((album) => {
+            return (
+                <Card 
+                    //key={album.id}
+                    albumTitle={album.title}
+                    albumDescription={album.description}
+                    buttonText='OK'
+                    imageURL={album.image}
+                />
+            );
+        });
+    };
+    
+    return (
+        <div className='container'>{renderedList()}</div>
+    );
+};
+
+export default App;
