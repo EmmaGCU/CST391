@@ -14,8 +14,12 @@ export const readQuotes: RequestHandler = async (req: Request, res: Response) =>
         let userId = parseInt(req.query.userId as string);
         
         console.log('quoteId', quoteId);
-        if (Number.isNaN(quoteId)) {
-            quotes = await QuoteDao.readQuotes(userId);
+        console.log('userId', userId);
+        if (userId == 0) {
+            quotes = await QuoteDao.readAllQuotes();
+        }
+        else if (Number.isNaN(quoteId)) {
+            quotes = await QuoteDao.readQuotesByUser(userId);
         } else {
             quotes = await QuoteDao.readQuotesByQuoteId(quoteId);
         }

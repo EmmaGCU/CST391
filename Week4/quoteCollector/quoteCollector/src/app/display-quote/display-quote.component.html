@@ -1,7 +1,7 @@
 <div *ngIf="!editMode">
-<div align="center">
-    <div class="card mb-6" style="max-width: 700px;">
-        <div class="row no-gutters">
+    <div align="center">
+        <div class="card mb-6" style="max-width: 700px;">
+            <div class="row no-gutters">
                 <table>
                     <colgroup>
                         <col style="width: 60%">
@@ -39,9 +39,9 @@
                         </td>
                     </tr>
                 </table>
+            </div>
         </div>
     </div>
-</div>
 </div>
 <div *ngIf="editMode">
     <app-edit-quote [quote]="quote" (reset)="editMode = $event"></app-edit-quote>

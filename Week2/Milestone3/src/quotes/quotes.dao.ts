@@ -5,8 +5,12 @@ import { quoteQueries } from './quotes.queries';
 import { Search } from '../search/search.model';
 import * as TagsDao from '../tags/tags.dao'
 
-export const readQuotes = async(userId: number) => {
-    return execute<Quote[]>(quoteQueries.readQuotes, [userId]);
+export const readQuotesByUser = async(userId: number) => {
+    return execute<Quote[]>(quoteQueries.readQuotesByUser, [userId]);
+};
+
+export const readAllQuotes = async() => {
+    return execute<Quote[]>(quoteQueries.readAllQuotes, []);
 };
 
 export const readQuotesByQuoteId = async (quoteId: number) => {

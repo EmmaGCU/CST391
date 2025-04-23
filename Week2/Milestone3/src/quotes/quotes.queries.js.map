@@ -1,1 +1,1 @@
-{"version":3,"file":"quotes.queries.js","sourceRoot":"","sources":["quotes.queries.ts"],"names":[],"mappings":";;;AAAa,QAAA,YAAY,GAAG;IACxB,UAAU,EAAE,8PAA8P;IAC1Q,mBAAmB,EAAE,+PAA+P;IACpR,WAAW,EAAE,sFAAsF;IACnG,WAAW,EAAE,yGAAyG;IACtH,WAAW,EAAE,uCAAuC;CACvD,CAAA"}
+{"version":3,"file":"quotes.queries.js","sourceRoot":"","sources":["quotes.queries.ts"],"names":[],"mappings":";;;AAAa,QAAA,YAAY,GAAG;IACxB,aAAa,EAAE,4OAA4O;IAC3P,gBAAgB,EAAE,8PAA8P;IAChR,mBAAmB,EAAE,+PAA+P;IACpR,WAAW,EAAE,sFAAsF;IACnG,WAAW,EAAE,yGAAyG;IACtH,WAAW,EAAE,uCAAuC;CACvD,CAAA"}

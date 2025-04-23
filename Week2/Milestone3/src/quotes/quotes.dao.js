@@ -42,14 +42,18 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.searchQuotes = exports.deleteQuote = exports.updateQuote = exports.createQuote = exports.readQuotesByQuoteId = exports.readQuotes = void 0;
+exports.searchQuotes = exports.deleteQuote = exports.updateQuote = exports.createQuote = exports.readQuotesByQuoteId = exports.readAllQuotes = exports.readQuotesByUser = void 0;
 const mysql_connector_1 = require("../services/mysql.connector");
 const quotes_queries_1 = require("./quotes.queries");
 const TagsDao = __importStar(require("../tags/tags.dao"));
-const readQuotes = (userId) => __awaiter(void 0, void 0, void 0, function* () {
-    return (0, mysql_connector_1.execute)(quotes_queries_1.quoteQueries.readQuotes, [userId]);
+const readQuotesByUser = (userId) => __awaiter(void 0, void 0, void 0, function* () {
+    return (0, mysql_connector_1.execute)(quotes_queries_1.quoteQueries.readQuotesByUser, [userId]);
 });
-exports.readQuotes = readQuotes;
+exports.readQuotesByUser = readQuotesByUser;
+const readAllQuotes = () => __awaiter(void 0, void 0, void 0, function* () {
+    return (0, mysql_connector_1.execute)(quotes_queries_1.quoteQueries.readAllQuotes, []);
+});
+exports.readAllQuotes = readAllQuotes;
 const readQuotesByQuoteId = (quoteId) => __awaiter(void 0, void 0, void 0, function* () {
     return (0, mysql_connector_1.execute)(quotes_queries_1.quoteQueries.readQuotesByQuoteId, [quoteId]);
 });

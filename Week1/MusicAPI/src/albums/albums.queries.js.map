@@ -1,0 +1,1 @@
+{"version":3,"file":"albums.queries.js","sourceRoot":"","sources":["albums.queries.ts"],"names":[],"mappings":";;;AAAa,QAAA,YAAY,GAAG;IACxB,UAAU,EAAE,oIAAoI;IAChJ,kBAAkB,EAAE,kKAAkK;IACtL,wBAAwB,EAAE,qKAAqK;IAC/L,6BAA6B,EAAE,0KAA0K;IACzM,mBAAmB,EAAE,8JAA8J;IACnL,WAAW,EAAE,+EAA+E;IAC5F,WAAW,EAAE,kGAAkG;IAC/G,WAAW,EAAE,uCAAuC;CACvD,CAAA"}

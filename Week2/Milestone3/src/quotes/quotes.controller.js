@@ -53,8 +53,12 @@ const readQuotes = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         let quoteId = parseInt(req.query.quoteId);
         let userId = parseInt(req.query.userId);
         console.log('quoteId', quoteId);
-        if (Number.isNaN(quoteId)) {
-            quotes = yield QuoteDao.readQuotes(userId);
+        console.log('userId', userId);
+        if (userId == 0) {
+            quotes = yield QuoteDao.readAllQuotes();
+        }
+        else if (Number.isNaN(quoteId)) {
+            quotes = yield QuoteDao.readQuotesByUser(userId);
         }
         else {
             quotes = yield QuoteDao.readQuotesByQuoteId(quoteId);
