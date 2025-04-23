@@ -5,7 +5,7 @@
 
 ## Introduction
 
-- In this activity we will learn about routing and navigation within a React application. We will also remove hard coded data from an application started previously and instead read in the data from a JSON file. Additionally we will learn how to refactor an application into smaller components.
+- In this activity we will learn how to dynamically update content displayed in your application. We will also add some new features to the Album Details page of the music application. Additionally we will do some work with adding new data to the data base, as well as refactoring this code in order to account for not just adding but also editing.
 
 ## Activity 7 Commands
 
