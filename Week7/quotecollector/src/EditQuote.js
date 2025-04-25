@@ -5,7 +5,6 @@ import TagListItem from './TagListItem';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 const EditQuote = (props) => {
-
     let quote = {
         authorFirst: '',
         authorLast: '',
@@ -22,10 +21,10 @@ const EditQuote = (props) => {
     let quoteId = 0;
 
     if(data.quote) {
-        quote = data.quote;
-        addedDate = data.quote.addedDate;
-        quoteId = data.quote.quoteId;
         newQuoteCreation = false;
+        quoteId = data.quote.quoteId;
+        quote = data.quote;
+        addedDate = data.quote.dateAdded;
     }
 
     const [authorFirst, setAuthorFirst] = useState('');
@@ -47,8 +46,25 @@ const EditQuote = (props) => {
     const updateComments = (event) => {
         setComments(event.target.value);
     }
-    const updateTags = (tagId) => {
 
+    const updateTags = (tag, isChecked) => {
+        if (isChecked) {
+            for (let i=0; i<tags.length; i++) {
+                if(tags[i].tagId == tag.tagId) {
+                    quoteTags.push(tag);
+                    break;
+                }
+            }
+        }
+        else {
+            for (let i=0; i<quoteTags.length; i++) {
+                if (quoteTags[i].tagId == tag.tagId) {
+                quoteTags.splice(i,1);
+                break;
+                }
+            }
+        }
+        console.log(JSON.stringify(quoteTags));
     }
 
     let refresh = false;
@@ -56,6 +72,20 @@ const EditQuote = (props) => {
     useEffect(() => {
         console.log('*** in refresh search***')
         loadTags();
+
+        if(data.quote) {
+            setAuthorFirst(quote.authorFirst);
+            setAuthorLast(quote.authorLast);
+            setComments(quote.comments);
+            setText(quote.text);
+
+            let quoteTagsToAdd = [];
+            for (let i=0; i<quote.tags.length; i++) {
+                quoteTagsToAdd.push(quote.tags[i]);
+            }
+
+            setQuoteTags(quoteTagsToAdd);
+        }
     }, [refresh]);
 
     const loadTags = async () => {
@@ -66,10 +96,19 @@ const EditQuote = (props) => {
     }
 
     const tagList = tags.map((tag) => {
-        //console.log('bulding checkbox for tag id ', tag.tagId);
-        //const x = quote.quoteId;
+        let checked = false;
+        console.log(tag);
+        if (data.quote != null) {
+            for (let i=0; i<data.quote.tags.length; i++) {
+                if(tag.tagId == data.quote.tags[i].tagId) {
+                    checked=true; 
+                    break;
+                }
+            }
+            console.log(checked);
+        }
         return (
-            <TagListItem tag={tag} onChange={(tagId) => updateTags(tagId)}/>
+            <TagListItem tag={tag} checked={checked} onChange={(tag, isChecked) => updateTags(tag, isChecked)}/>
         );
     });
 
@@ -96,18 +135,23 @@ const EditQuote = (props) => {
         let response;
         if (newQuoteCreation) {
             response = await dataSource.post('/quotes', quote);
+            alert('Quote Added');
+            navigate('/quotes');
         }
         else {
             response = await dataSource.put('/quotes', quote);
+            alert('Quote Updated');
+            let updatedQuote=await dataSource.get('/quotes?quoteId='+quote.quoteId);
+            console.log("get updated quote from DB ",updatedQuote.data[0]);
+            navigate('/quote', {state:{quote:updatedQuote.data[0], user:data.user}});
         }
-        console.log(response);
-        console.log(response.data);
+        //console.log(response);
+        //console.log(response.data);
         if (newQuoteCreation) {
-            alert('Quote Added');
+
         }
         else {
-            alert('Quote Updated');
-            navigate('/quote', {state:{quote:data.quote, user:data.user}});
+
         }
     }
 
@@ -144,7 +188,7 @@ const EditQuote = (props) => {
                                 {tagList}
                             </div>
                             <br />
-                            <button type="submit" className="btn btn-primary" onClick={handleFormSubmit}>Submit</button>
+                            <button className="btn btn-primary" onClick={handleFormSubmit}>Submit</button>
                         </td>
                     </tr>
                 </table>

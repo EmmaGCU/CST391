@@ -35,9 +35,6 @@ const NavBar = () => {
                     <span className='nav-item nav-link' href='#'>
                         <Link to='/search'>Search</Link>
                     </span>
-                    <span className='nav-item nav-link' href='#'>
-                        <Link to='/quote'>Testing</Link>
-                    </span>
                 </div>
             </div>
         </nav>

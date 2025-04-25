@@ -9,6 +9,13 @@ const SignUp = (props) => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
+    console.log("in SignUpPage", props);
+    let navigate = useNavigate();
+    let location = useLocation();
+    let state = location.state
+    let from =state?.from?.pathname ? state.from.pathname : '/';
+    let text = '';
+
     const handleSignUp = async () => {
         let user = {
             firstName: firstName,
@@ -18,14 +25,8 @@ const SignUp = (props) => {
         }
         await dataSource.post('/users', user);
         alert('Signup successful');
+        navigate('/login');
     };
-
-    console.log("in SignUpPage", props);
-    let navigate = useNavigate();
-    let location = useLocation();
-    let state = location.state
-    let from =state?.from?.pathname ? state.from.pathname : '/';
-    let text = '';
 
     //let user = props.user;
     if (from !== '/') {

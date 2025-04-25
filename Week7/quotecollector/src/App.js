@@ -46,11 +46,11 @@ const App = (props) => {
         userInfo = await dataSource.get('/users?username='+username);
         //alert(userInfo.data[0].password);
         if (userInfo.data.length > 0 && userInfo.data[0].password === pass) {
-            alert(userInfo.data[0].userId);
+            //alert(userInfo.data[0].userId);
             setCurrentUser(userInfo.data[0].userId);
             setIsLoggedIn(true);
             generateQuoteList(userInfo.data[0].userId);
-            navigate(from, { replace: true });
+            navigate('/quotes', { replace: true });
         }
         else {
             alert('Login Failed');
@@ -128,12 +128,11 @@ const App = (props) => {
                         }
                     />
                 </Routes>
-                <h3>Welcome to Quote Collector</h3>
             </BrowserRouter>
         </>
     );
 };
 
-const RootElement = () => <span></span>;
+const RootElement = () => <span><h3>Welcome to Quote Collector</h3></span>;
 
 export default App;

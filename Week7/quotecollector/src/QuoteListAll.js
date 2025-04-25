@@ -11,7 +11,7 @@ const QuoteListAll = (props) => {
         response = await dataSource.get('/quotes?userId='+userId);
         //setState. ({quoteList: response.data});
         setQuoteList(response.data);
-        console.log("Quotes loaded in QLA: ",response.data);
+        //console.log("Quotes loaded in QLA: ",response.data);
         
     }
 
@@ -21,14 +21,14 @@ const QuoteListAll = (props) => {
     };
 
     useEffect(() => {
-        console.log('In QLA useEffect')
+        //console.log('In QLA useEffect')
         loadQuotes(props.user);
     }, []);
 
-    console.log("Rendering QLA");
+    //console.log("Rendering QLA");
 
     return (
-        <QuoteList quoteList={quoteList} user={props.user} onClick={(quoteId, navigate) => onSelectQuote(quoteId, navigate)}/>
+        <QuoteList quoteList={quoteList} from='/quotes' user={props.user} onClick={(quoteId, navigate) => onSelectQuote(quoteId, navigate)}/>
         // (ready) ? 
         // (<QuoteList quoteList={quoteList} user={props.user} onClick={(quoteId, navigate) => onSelectQuote(quoteId, navigate)}/>)
         //  :

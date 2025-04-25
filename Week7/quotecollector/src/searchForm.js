@@ -2,18 +2,34 @@ import React, { useState, useEffect } from 'react';
 import dataSource from './dataSource';
 import QuoteList from './QuoteList';
 import TagListItem from './TagListItem';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const SearchForm = (props) => { 
+
+    const location = useLocation();
+    const data = location.state;
+
+    //alert(props.user);
     const [keywordText, setKeywordText] = useState(""); 
     const [authorText, setAuthorText] = useState(""); 
     const [results, setResults] = useState([]); 
     const [tags, setTags] = useState([]);
+    const [selectedTags, setSelectedTags] = useState([]);
+    const [searchData, setSearchData] = useState({
+        keyword: '',
+        author: '',
+        tags: [],
+        comments: {
+            with: false,
+            without: false,
+            all: true
+        }
+    });
 
     let search = {
         keyword: keywordText,
         author: authorText,
-        tags: tags,
+        tags: [],
         comments: {
             with: false,
             without: false,
@@ -27,6 +43,17 @@ const SearchForm = (props) => {
     useEffect(() => {
         console.log('*** in refresh search***')
         loadTags();
+
+        const setSearch = async () => {
+            console.log('Resetting search: ', data.search);
+            await setInitialSearch(data.search);
+            //performSearch(props.user);
+        }
+        if (data) {
+            if (data.search) {
+                setSearch();
+            }
+        }
     }, [refresh]);
 
     const loadTags = async () => {
@@ -36,26 +63,52 @@ const SearchForm = (props) => {
         console.log("*** refreshed from DB: Tags ***", response.data);
     }
 
+    const setInitialSearch = async (initialData) => {
+        await setSearchData(initialData);
+    }
+
     const performSearch = async (userId) => {
         let response;
         //alert("here");
-        response = await dataSource.post('/quotes/search?userId=1', search);
+        console.log('performSearch: ', searchData);
+        response = await dataSource.post('/quotes/search?userId='+props.user, searchData);
         console.log("*** refreshed from DB search***",response.data);
-        setResults(response.data);   
+        setResults(response.data); 
+        console.log('performSearch: after: ', searchData);  
     }
     
     const handleChangeKeyword = (event) => { 
         setKeywordText(event.target.value); 
+        setSearchData(search);
         console.log(keywordText); 
     }; 
 
     const handleChangeAuthor = (event) => { 
         setAuthorText(event.target.value); 
+        setSearchData(search);
         console.log(authorText); 
     }; 
 
-    const onChangeTag = (event) => {
+    const onChangeTag = (tag, isChecked) => { 
+        if (isChecked) {
+            for (let i=0; i<tags.length; i++) {
+                if(tags[i].tagId == tag.tagId) {
+                    search.tags.push(tag);
+                    break;
+                }
+            }
+        }
+        else {
+            for (let i=0; i<search.tags.length; i++) {
+                if (search.tags[i].tagId == tag.tagId) {
+                search.tags.splice(i,1);
+                break;
+                }
+            }
+        }
+        setSearchData(search);
 
+        //console.log(JSON.stringify(quoteTags));
     }
 
     const onSelectQuote = (quoteId, navigate) => {
@@ -64,12 +117,29 @@ const SearchForm = (props) => {
     };
     
     const tagList = tags.map((tag) => {
-        //console.log('bulding checkbox for tag id ', tag.tagId);
-        //const x = quote.quoteId;
+        let checked = false;
         return (
-            <TagListItem tag={tag} onChange={(tagId) => onChangeTag(tagId)}/>
+            <TagListItem tag={tag} checked={checked} onChange={(tag, isChecked) => onChangeTag(tag, isChecked)}/>
         );
     });
+
+    const onSelectComments = (event) => {
+        let isChecked = (event.target).checked;
+        if (event.target.value == 'comments') {
+          search.comments.with = isChecked;
+        }
+        else {
+          search.comments.without = isChecked
+        }
+        if ((search.comments.with && search.comments.without) || (!search.comments.with && !search.comments.without)) {
+          search.comments.all = true;
+        }
+        else {
+          search.comments.all = false;
+        }
+        setSearchData(search);
+        //alert(JSON.stringify(search.comments));
+    }
     
     return ( 
         <div align="center" style={{marginLeft: '50px', marginRight: '50px'}}>
@@ -95,10 +165,10 @@ const SearchForm = (props) => {
                                 <b>Search for quotes: </b>
                                 <div className="form-group">
                                     <input type="checkbox" id="comments" name="comments" 
-                                        value="comments" />
+                                        value="comments" onChange={onSelectComments}/>
                                     <label style={{marginRight: '20px'}}>With Comments</label>
                                     <input type="checkbox" id="noComments" name="noComments" 
-                                        value="noComments" />
+                                        value="noComments" onChange={onSelectComments}/>
                                     <label>No Comments</label>
                                 </div>
                                 <br />
@@ -112,7 +182,7 @@ const SearchForm = (props) => {
                         </td>
                         <td style={{paddingLeft: '20px', verticalAlign: 'top', textAlign: 'center'}}>
                             <h4>Results:</h4>
-                            <QuoteList quoteList={results} user={props.user} onClick={(quoteId, navigate) => onSelectQuote(quoteId, navigate)}/>
+                            <QuoteList quoteList={results} from='/search' search={searchData} user={props.user} onClick={(quoteId, navigate) => onSelectQuote(quoteId, navigate)}/>
                         </td>
                     </tr>
                 </tbody>
